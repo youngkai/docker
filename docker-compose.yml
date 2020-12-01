@@ -1,0 +1,52 @@
+version: "2"
+services:
+  mysql:
+    image: "mysql:latest"
+    restart: always
+    volumes:
+      - "./mysql/data:/var/lib/mysql:rw"
+      - "./mysql/conf.d:/etc/mysql/conf.d:rw"
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_USER: "root"
+      MYSQL_PASSWORD: "root"
+    networks:
+      net1:
+        aliases:
+          - "mysql"
+  php:
+    image: "php:7.3-fpm-stretch"
+    volumes:
+      - "./php/lib/php.ini:/usr/local/php/lib/php.ini:rw"
+      - "./php/etc:/usr/local/php/etc:rw"
+      - "./log:/usr/local/php/var/log:rw"
+      - "./www:/data/webroot/www:rw,cached"
+    networks:
+      net1:
+        aliases:
+          - "php"
+  nginx:
+    image: "nginx:latest"
+    volumes:
+      - "./nginx/conf:/usr/local/nginx/conf:rw"
+      - "./www:/data/webroot/www:rw,cached"
+    ports:
+      - "80:80"
+    networks:
+      net1:
+        aliases:
+          - "nginx"
+  redis:
+    image: "redis:latest"
+    command: redis-server --requirepass 000000
+    ports:
+      - "6379:6379"
+    networks:
+      net1:
+        aliases:
+          - "redis"
+networks:
+  net1:
+    driver: bridge
