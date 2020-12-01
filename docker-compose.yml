@@ -1,52 +1,70 @@
-version: "2"
+version: "3"
+ 
 services:
-  mysql:
-    image: "mysql:latest"
-    restart: always
-    volumes:
-      - "./mysql/data:/var/lib/mysql:rw"
-      - "./mysql/conf.d:/etc/mysql/conf.d:rw"
-    ports:
-      - "3306:3306"
-    environment:
-      MYSQL_ROOT_PASSWORD: "root"
-      MYSQL_USER: "root"
-      MYSQL_PASSWORD: "root"
-    networks:
-      net1:
-        aliases:
-          - "mysql"
-  php:
-    image: "php:7.3-fpm-stretch"
-    volumes:
-      - "./php/lib/php.ini:/usr/local/php/lib/php.ini:rw"
-      - "./php/etc:/usr/local/php/etc:rw"
-      - "./log:/usr/local/php/var/log:rw"
-      - "./www:/data/webroot/www:rw,cached"
-    networks:
-      net1:
-        aliases:
-          - "php"
   nginx:
-    image: "nginx:latest"
-    volumes:
-      - "./nginx/conf:/usr/local/nginx/conf:rw"
-      - "./www:/data/webroot/www:rw,cached"
-    ports:
+     image: nginx:latest
+     restart: always
+     container_name: nginx
+     volumes:
+      - "./www:/www"
+      - "./nginx/conf/nginx.conf:/etc/nginx/nginx.conf"
+      - "./nginx/conf.d:/etc/nginx/conf.d"
+      - "./nginx/logs:/var/log/nginx"
+      - "./nginx/conf:/etc/nginx/conf"
+     ports:
       - "80:80"
+     depends_on:
+      - php
+      - mysql
+      - redis
+     networks:
+      docker_composer_net:
+       aliases:
+         - nginx
+  php:
+    image: php:7.3-fpm-stretch
+    restart: always
+    ports:
+      - "9000:9000"
+    container_name: php
+    volumes:
+      - "./www:/www"
+      - "./php/php-fpm.d/www.conf:/opt/bitnami/php/etc/php-fpm.d/www.conf"
     networks:
-      net1:
+     docker_composer_net:
         aliases:
-          - "nginx"
+          - php
+  mysql:
+       image: mysql:latest
+       restart: always
+       container_name: mysql
+       volumes:
+        - "./mysql/conf:/etc/mysql/conf.d"
+        - "./mysql/logs:/logs"
+        - "./mysql/data:/var/lib/mysql"
+       ports:
+        - "3306:3306"
+       command: [
+        '--default-authentication-plugin=mysql_native_password',
+        '--character-set-server=utf8mb4',
+        '--collation-server=utf8mb4_unicode_ci',
+       ]
+       environment:
+        MYSQL_ROOT_PASSWORD: "root"
+       networks:
+        docker_composer_net:
+         aliases:
+           - mysql
   redis:
     image: "redis:latest"
+    restart: always
     command: redis-server --requirepass 000000
+    container_name: "redis"
     ports:
       - "6379:6379"
     networks:
-      net1:
+      docker_composer_net:
         aliases:
-          - "redis"
+          - "redis"       
 networks:
-  net1:
-    driver: bridge
+  docker_composer_net:
