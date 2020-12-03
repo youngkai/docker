@@ -31,6 +31,9 @@ services:
     volumes:
       - "./www:/www"
       - "./php/php-fpm.d/www.conf:/opt/bitnami/php/etc/php-fpm.d/www.conf"
+    depends_on: 
+      - redis  
+      - mysql
     networks:
      docker_composer_net:
         aliases:
