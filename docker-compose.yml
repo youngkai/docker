@@ -22,7 +22,8 @@ services:
        aliases:
          - nginx
   php:
-    image: php:7.3-fpm-stretch
+    build: 
+      context: "php"
     restart: always
     ports:
       - "9000:9000"
