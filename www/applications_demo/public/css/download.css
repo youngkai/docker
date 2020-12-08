@@ -1,0 +1,157 @@
+/*从这开始才是需要用到的css文件*/
+.download-pop{
+    display: none;
+    position: absolute;
+    top:64px;
+    box-sizing: border-box;
+    width:310px;
+    max-height: 319px;
+    padding: 8px 12px;
+    border:1px #42A5F5 solid;
+    border-radius: 5px;
+    background-color: #fff;
+    z-index: 99;
+    overflow:auto;
+}
+.download-pop-ul{}
+.download-pop-item{
+    position: relative;
+    padding: 9px 0 8px;
+    overflow: hidden;
+    border-bottom: 1px #ccd4d9 solid;
+}
+.download-pop-icon{
+    float: left;
+    margin-right: 12px;
+}
+.download-file{
+    float: left;
+}
+.download-file-tit{
+    font-size: 12px;
+    line-height: 22px;
+    color: #363f44;
+    max-width: 140px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.download-file-info{
+    font-size: 12px;
+    line-height: 20px;
+    color: #96A1A7;
+}
+.download-status{
+    float: right;
+}
+.download-create{
+    font-size: 12px;
+    line-height: 22px;
+    color: #363f44;
+}
+.download-pop-btn{
+    float: right;
+    width: 65px;
+    height: 24px;
+    margin-top: 7px;
+    line-height: 24px;
+    
+    text-align: center;
+    border-radius: 3px;
+    font-size: 12px;
+    color: #fff;
+}
+.download-btn
+{
+    background-color: #42a5f5;
+}
+.download-cancel
+{
+    background-color: #808A87;
+}
+.download-again{
+    font-size: 12px;
+    color: #42a5f5;
+    line-height: 1.2;
+}
+.download-time{
+    padding: 4px 0 0;
+    font-size: 14px;
+    line-height: 20px;
+    color:#96a1a7;
+}
+.download-pop-ing{
+    border-bottom-color: #fff;
+}
+.download-bar{
+    position: absolute;
+    bottom:0;
+    clear: both;
+    width: 100%;
+    font-size: 0;
+    line-height: 0;
+    height: 3px;
+    background-color: #ECF0F2;
+}
+.download-bar-inner{
+    height: 3px;
+    background-color: #42a5f5;
+}
+.download-loading{
+    width: 15px;
+    height: 15px;
+    float: right;
+    margin: 2px 17px 0 0;
+    background: url(../img/download_loading.gif) no-repeat;
+    background-size: 15px 15px;
+}
+.download-tri{
+    display: none;
+    position: absolute;
+    top:57px;
+    width: 0;
+    height: 0;
+    font-size: 0;
+    line-height: 0;
+    border-left: 7px transparent solid;
+    border-right: 7px transparent solid;
+    border-bottom:7px #42A5F5 solid;
+    z-index: 100;
+}
+.download-tri-inner{
+    position: absolute;
+    width: 0;
+    height: 0;
+    font-size: 0;
+    line-height: 0;
+    top:1px;
+    left: -7px;
+    border-left: 7px transparent solid;
+    border-right: 7px transparent solid;
+    border-bottom:7px #fff solid;
+}
+.add-to-download{
+    display: none;
+    position: absolute;
+    width: 29px;
+    height: 25px;
+    background: url(../img/excel_down_small.png) no-repeat;
+}
+.download-pop-begin{
+    overflow: hidden;
+    padding: 9px 0 8px;
+    position: relative;
+}
+.download-begin{
+    height: 42px;
+    background: url(../img/download_loading.gif) no-repeat center center;
+}
+.newsmore{
+    font-size: 12px;
+    line-height: 22px;
+    color: #363f44;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: center;
+}

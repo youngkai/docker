@@ -1,0 +1,93 @@
+<div style="height:10px;margin:-10px -15px;position:relative;background:url(/inside.php?t=json&m=index&f=background) no-repeat center center;" id="bgDiv">
+<div id="showNews" style="display: none; width:250px; border-radius: 3px; -moz-border-radius: 3px; box-shadow:0px 1px 1px 0px #ccc; float:right; margin-top: 10px; margin-right: 20px; line-height: 35px; border: 1px solid #9fd0f9; background-color: #e8f2fb">
+    &nbsp;&nbsp;&nbsp;您有新的未读通知&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a onclick="showAllNews()" href="javascript:void(0);"><span id="newNum" style="color: #5eb8fb">0个提醒</span></a>
+</div>
+</div>
+<div class="modal fade" id="newsShow">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">服务器迁移公告</h4>
+          </div>
+          <div class = row >
+            <div style="padding:47px; line-height:26px" text-align-center>
+                                                亲爱的用户,您好！<br>
+                   &nbsp;&nbsp;&nbsp;&nbsp;我们将于9月19日21:00-23:00,9月21日00:00-23:59期间进行服务器迁移,期间可能导致车辆通知消息延迟/无法接收、报警事件异常、电子围栏无法触发等问题,如遇任何异常,请您与我们联系处理,谢谢！
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;同时,为给您造成的不便,致以最深的歉意！
+            </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+          </div>
+      </div>
+      <!-- /.modal-content -->
+  </div>
+<!-- /.modal-dialog -->
+</div>
+<script type="text/javascript">
+    /*
+    function showAllNews(){
+        $("#showNewsNum").text(0);
+        $("#showNewsNum").css("display","none");
+        location.href = '#news/show.html';
+    }*/
+
+	pageSetUp();
+	function autoBgdivHeight(){
+		var bgHeight=$(window).height()-93;
+		$("#bgDiv").css("height",bgHeight);
+	}
+	autoBgdivHeight();
+	$(window).resize(function(){
+		autoBgdivHeight();
+	})
+
+    //获取用户最新未读公告数
+    function getNewsNum(){
+        $ips.load('news', 'getNewsNum', {}, function (res) {
+            if(res.num > 0){
+                $("#newNum").text(res.num+"个提醒");
+                $("#showNews").css("display","block");
+            }else{
+                $("#showNews").css("display","none");
+            }
+        });
+    }
+    getNewsNum();
+    
+    //checkCookie();
+    function checkCookie()
+    {   
+    	$ips.load('index', 'isTruckUser', {}, function (res) {
+    		if(res){
+    			var d = new Date();
+                var str = d.getFullYear()+"-"+(d.getMonth()+1<10?'0'+(d.getMonth()+1):d.getMonth()+1)+"-"+(d.getDate()<10?'0'+d.getDate():d.getDate());
+                if(str < "2016-09-22"){
+                     showDate=getCookie('showDate')
+                     if (!showDate || showDate !=str)
+                           {
+                            setCookie('showDate',str)
+                            $('#newsShow').modal("show");
+                           }
+                }
+    		}
+	    	
+    	});
+    }
+    function getCookie(name){  
+        var arr = document.cookie.match(new RegExp("(^| )"+name+"=([^;]*)(;|$)"));
+        if(arr != null){  
+         return unescape(arr[2]);   
+        }else{  
+         return null;  
+        }  
+    }   
+    function setCookie(name,value){  
+        var Days = 1;   
+        var exp  = new Date(); 
+        exp.setTime(exp.getTime() + Days*24*60*60*1000);  
+        document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();  
+    } 
+</script>

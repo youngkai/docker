@@ -1,0 +1,12 @@
+2020-12-07 15:42:08|192.168.96.1|/|PHPERROR|NOTICE|Errors.errorHandler|PHP Notice:  Trying to get property 'driver' of non-object in /www/alpha_framework/Authorize.php on line 20
+ REQUEST :	array (
+)####
+2020-12-07 15:44:00|192.168.96.1|/|PHPERROR|NOTICE|Errors.errorHandler|PHP Notice:  Trying to get property 'driver' of non-object in /www/alpha_framework/Authorize.php on line 20
+ REQUEST :	array (
+)####
+2020-12-07 15:45:16|192.168.96.1|/|PHPERROR|NOTICE|Errors.errorHandler|PHP Notice:  Trying to get property 'driver' of non-object in /www/alpha_framework/Authorize.php on line 20
+ REQUEST :	array (
+)####
+2020-12-07 15:46:45|192.168.96.1|/|PHPERROR|NOTICE|Errors.errorHandler|PHP Notice:  Trying to get property 'driver' of non-object in /www/alpha_framework/Authorize.php on line 20
+ REQUEST :	array (
+)####

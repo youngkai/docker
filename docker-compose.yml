@@ -2,7 +2,8 @@ version: "3"
  
 services:
   nginx:
-     image: nginx:latest
+     build: 
+      context: "nginx"
      restart: always
      container_name: nginx
      volumes:
@@ -30,7 +31,9 @@ services:
     container_name: php
     volumes:
       - "./www:/www"
-      - "./php/php-fpm.d/www.conf:/opt/bitnami/php/etc/php-fpm.d/www.conf"
+      - "./php/www.conf:/usr/local/etc/php/php-fpm.d/www.conf"
+      - "./php/conf.d:/usr/local/etc/php/conf.d"
+      - "./php/php-fpm.d:/usr/local/etc/php-fpm.d"
     depends_on: 
       - redis  
       - mysql

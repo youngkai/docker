@@ -1,0 +1,63 @@
+body,
+div,
+ul,
+ol,
+li,
+p,header{
+    margin: 0;
+    padding: 0;
+    outline: 0; }
+li {
+    list-style: none;
+}
+img{
+    border: 0;
+}
+em, i {
+    font-style: normal; }
+html,body{
+    height: 100%;
+}
+body {
+    font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
+}
+a{
+    text-decoration: none;
+}
+header{
+    display: block;
+}
+button{
+    margin: 0;
+    padding: 0;
+}
+header{
+    position: relative;
+    padding: 0 13px 0 0;
+    height: 49px;
+    background-color:#2c3742;
+}
+/*.trigger{
+    position: absolute;
+    text-align: center;
+    border:0 none;
+    width: 100px;
+    height: 40px;
+    background-color: #fff;
+    left: 400px;
+    padding: 20px;
+}
+*/
+.m_hot{
+    width:28px;
+    height:13px;
+    display: inline-block;
+    margin-left:5px;
+    vertical-align: middle;
+    background: url('/img/hot.png') 0 0 no-repeat;
+}
+
+/* v2，v3模式下，content的padding都为0 */
+.content-no-padding{
+    padding: 0 !important;
+}

@@ -1,0 +1,3 @@
+2020-12-08 01:41:02|192.168.96.1|/|PHPERROR|NOTICE|Errors.errorHandler|PHP Notice:  Trying to get property 'driver' of non-object in /www/alpha_framework/Authorize.php on line 20
+ REQUEST :	array (
+)####

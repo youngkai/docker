@@ -1,0 +1,82 @@
+@keyframes rotation {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-1024deg); }
+}
+@keyframes move {
+    from { right: -112px; }
+    to { right: 112px; }
+}
+@keyframes bounce {
+    from { top: 6px; }
+    to { top: 0; transform: scale(1.2); }
+}
+@keyframes surprise {
+    from { transform: scale(0); }
+    to { transform: scale(1);  }
+}
+#top_user_guide {
+    position: fixed;
+    top: 50px;
+    right: 0;
+    width: 225px;
+    height: 128px;
+    /*transform: scale(0.32);*/
+    /*transform-origin: right top;*/
+}
+#top_user_guide .car {
+    position: absolute;
+    bottom: 0;
+    right: -112px;
+    width: 112px;
+    height: 64px;
+    background-size: 112px 64px;
+    background-image: url(../img/carBody.png);
+    animation: 2s move cubic-bezier(.5,.34,.59,.4) 1 forwards;
+}
+#top_user_guide .car .carWheel {
+    position: absolute;
+    width: 27px;
+    height: 27px;
+    background-size: 27px;
+    background-image: url(../img/carWheel.png);
+    cursor: pointer;
+    animation: 2s rotation cubic-bezier(.5,.34,.59,.4) 1 forwards;
+}
+#top_user_guide .car .carWheel:hover {
+}
+#top_user_guide .car .carWheelFront {
+    left: 7px;
+    bottom: -6px;
+}
+#top_user_guide .car .carWheelBack {
+    right: 10px;
+    bottom: -6px;
+}
+#top_user_guide .surprise {
+    position: absolute;
+    top: 0;
+    left: 62px;
+    width: 64px;
+    height: 64px;
+    transform: scale(0);
+    animation: 0.3s 2s surprise forwards;
+}
+#top_user_guide .surprise .arrowhead {
+    position: absolute;
+    top: 6px;
+    left: 9px;
+    width: 30px;
+    height: 43px;
+    background-size: 30px 43px;
+    background-image: url(../img/arrowhead.png);
+    animation: 0.2s 2.5s bounce 3;
+}
+#top_user_guide .surprise .text {
+    position: absolute;
+    bottom: -6px;
+    left: 0px;
+    font-size: 14px;
+    line-height: 16px;
+    color: red;
+    font-weight: bold;
+}
